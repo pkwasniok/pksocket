@@ -8,10 +8,20 @@ using namespace std;
 class Socket
 {
     public:
+        // Constructors
+        Socket();
         Socket(string host, int port);
         Socket(string host, int port, bool server_mode);
+        Socket(int sockfd, string host, int port);
+
+        // Methods
         Socket acceptConnection();
-        string recvStr();
+        string receiveString();
+        void close();
+
+        // Getters/setters
+        string getHost();
+        int getPort();
 
     private:
         int sockfd;
