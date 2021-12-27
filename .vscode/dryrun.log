@@ -1,0 +1,16 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/pkwasniok/Repos/pksocket'
+echo "--> Clean"
+rm -f build/*
+echo "--> Compile"
+echo "   --> pksocket.cpp"
+g++ -c src/pksocket.cpp -o build/pksocket.o
+echo "   --> main.cpp"
+g++ -c main.cpp -o build/main.o
+echo "--> Link"
+g++ build/pksocket.o build/main.o -o build/main -pthread
+echo "--> Run"
+./build/main
+echo "--> Finished!"
+make: Leaving directory '/home/pkwasniok/Repos/pksocket'
+ 
