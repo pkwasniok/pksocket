@@ -3,6 +3,7 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <unistd.h>
 #include "pksocket.hpp"
 
 using namespace std;
@@ -35,6 +36,12 @@ Socket::Socket(string host, int port)
 {
     // Initialize socket
     init(host, port);
+
+    sockaddr_in address;
+    address.sin_family = AF_INET;
+    address.sin_port = htons(port);
+    inet_pton(AF_INET, host.c_str(), &address.sin_addr);
+    connect(this->sockfd, (struct sockaddr *) &address, sizeof(address));
 }
 
 Socket::Socket(string host, int port, bool server_mode)
@@ -83,6 +90,11 @@ string Socket::receiveString()
     string data = buff;
 
     return data;
+}
+
+void Socket::sendString(string data)
+{
+    write(this->sockfd, data.c_str(), data.length());
 }
 
 void Socket::close()

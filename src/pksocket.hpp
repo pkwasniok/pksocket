@@ -17,6 +17,7 @@ class Socket
         // Methods
         Socket acceptConnection();
         string receiveString();
+        void sendString(string data);
         void close();
 
         // Getters/setters
