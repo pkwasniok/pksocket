@@ -1,18 +1,16 @@
 run: clean compile link
-	@echo "--> Run"
-	@./build/main
 	@echo "--> Finished!"
 
 link:
 	@echo "--> Link"
-	@g++ build/pksocket.o build/main.o -o build/main -pthread
+	@g++ build/pksocket.o build/pksocket-term.o -o build/term -pthread
 
 compile:
 	@echo "--> Compile"
 	@echo "   --> pksocket.cpp"
 	@g++ -c src/pksocket.cpp -o build/pksocket.o
-	@echo "   --> main.cpp"
-	@g++ -c main.cpp -o build/main.o
+	@echo "   --> pksocket-term.cpp"
+	@g++ -c pksocket-term.cpp -o build/pksocket-term.o
 
 clean:
 	@echo "--> Clean"
