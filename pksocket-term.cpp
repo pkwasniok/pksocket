@@ -4,21 +4,26 @@
 
 using namespace std;
 
-void handleReceive()
+void handleReceive(Socket* socket)
 {
-    cout << "test" << endl;
+    while(true)
+    {
+        string data = socket->receiveString();
+        cout << data;
+    }
 }
 
 int main()
 {
     // Initialize socket
-    Socket socket = Socket("192.168.1.105", 33579);
+    Socket socket = Socket("192.168.1.105", 5000);
 
     // Handle receiving data
-    thread t(handleReceive);
+    thread t(handleReceive, &socket);
 
     while(true)
     {
+        cout << "> ";
         string data;
         cin >> data;
         socket.sendString(data);
