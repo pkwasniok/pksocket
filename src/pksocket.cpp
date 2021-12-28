@@ -4,7 +4,7 @@
 #include <arpa/inet.h>
 #include <string.h>
 #include <unistd.h>
-#include "pksocket.hpp"
+#include "../pksocket.hpp"
 
 using namespace std;
 
