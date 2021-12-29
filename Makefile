@@ -13,3 +13,9 @@ compile:
 clean:
 	@echo "--> Clean"
 	@rm -f build/*
+
+test: run
+	@echo "--> Test"
+	@g++ -c test.cpp -o build/test.o
+	@g++ build/test.o pksocket.a -o build/test
+	@./build/test

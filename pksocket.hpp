@@ -30,5 +30,5 @@ class Socket
         int sockfd;
         string host;
         int port;
-        void init(string host, int port);
+        int init(string host, int port);
 };

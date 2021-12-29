@@ -10,21 +10,22 @@ using namespace std;
 
 // Constructors
 
-void Socket::init(string host, int port)
+int Socket::init(string host, int port)
 {
     this->host = host;
     this->port = port;
 
     // Create socket
     this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    this->sockfd;
 
     // Bind socket
     sockaddr_in address;
     address.sin_family = AF_INET;
     address.sin_port = htons(port);
     inet_pton(AF_INET, host.c_str(), &address.sin_addr);
-    bind(this->sockfd, (struct sockaddr *) &address, sizeof(address));
+    int result = bind(this->sockfd, (struct sockaddr *) &address, sizeof(address));
+
+    return 0;
 }
 
 Socket::Socket()
@@ -35,7 +36,7 @@ Socket::Socket()
 Socket::Socket(string host, int port)
 {
     // Initialize socket
-    init(host, port);
+    int result = init(host, port);
 
     sockaddr_in address;
     address.sin_family = AF_INET;
