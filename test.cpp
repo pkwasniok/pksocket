@@ -5,8 +5,19 @@ using namespace std;
 
 int main()
 {
-    Socket socket = Socket("192.168.1.105", 5000, true);
+    try{
+        Socket socket = Socket("0.0.0.0", 2137, true);
+    }
+    catch(exception& e)
+    {
+        cout << e.what() << endl;
+        return 0;
+    }
 
-    cout << "Hello world!" << endl;
+    cout << "Created socket!" << endl;
+
+
+    while(true);
+
     return 0;
 }
